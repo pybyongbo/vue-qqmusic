@@ -4,7 +4,7 @@
       <div class="bottom-container" v-show="show" @click="close">
         <div class="bottom-wrapper">
           <div class="item" @click="showSetting(true)">
-            皮肤中心11
+            皮肤中心
           </div>
           <div class="item-close" @click="close">
             关闭
