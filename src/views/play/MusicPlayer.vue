@@ -1,16 +1,15 @@
 <template>
   <div class="music-player">
-      <!-- music player -->
     <player :currentIndex="currentIndex" @changeCurrentIndex="changeCurrentIndex"
             @showList="showList"/>
-    <!-- <player-list :currentIndex="currentIndex" @changeCurrentIndex="changeCurrentIndex"
-                 :show="playListShow" @showList="showList"/> -->
+    <player-list :currentIndex="currentIndex" @changeCurrentIndex="changeCurrentIndex"
+                 :show="playListShow" @showList="showList"/>
   </div>
 </template>
 
 <script>
   import Player from "./Player"
-//   import PlayerList from "./PlayerList"
+  import PlayerList from "./PlayerList"
 
   export default {
     name: "music-player",
@@ -30,7 +29,7 @@
     },
     components: {
       Player,
-    //   PlayerList
+      PlayerList
     }
   }
 </script>

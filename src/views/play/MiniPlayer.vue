@@ -58,7 +58,8 @@ export default {
         handleShow(){
             if(this.song.url){
                 //显示播放组件
-                this.$emit("show")
+                // this.$emit("show");
+                this.$emit("showPlayer");
             }
         },
         playOrPause(){

@@ -189,6 +189,7 @@ import { mapState, mapMutations } from "vuex"
        */
       next() {
         let playSongs = this.$store.state.songs;
+        console.log('next');
         if (playSongs.length > 0 && playSongs.length !== 1) {
           let currentIndex = this.currentIndex;
           if (this.currentPlayMode === 0) {  // 列表播放
@@ -369,4 +370,128 @@ import { mapState, mapMutations } from "vuex"
     return timeStr;
   }
 </script>
-
+<style lang="stylus" scoped>
+  .player
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 1001
+    width: 100%
+    height: 100%
+    overflow: hidden
+    color: #FFFFFF
+    background-color: #212121
+    transform-origin: right bottom
+    &.player-rotate-enter-active, &.player-rotate-leave-active
+      transition: transform .3s
+      transform: rotateZ(0deg) translate3d(0, 0, 0)
+    &.player-rotate-enter, &.player-rotate-leave-to
+      transform: rotateZ(30deg) translate3d(100%, 0, 0)
+    .header
+      position: fixed
+      width: 100%
+      height: 55px
+      line-height: 55px
+      color: #FFFFFF
+      text-align: center
+      font-size: 18px
+      .header-back
+        position: absolute
+        left: 10px
+        font-size: 22px
+      .header-title
+        margin: 0 40px
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+    .player-bg
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      z-index: -1
+      margin: -35px
+      background-repeat: no-repeat
+      background-position: center center
+      background-size: cover
+      filter: blur(20px);
+      opacity: .6
+      transform: translate3d(0, 0, 0)
+      transition: background-image .3s
+    .singer-top
+      margin-top: 70px
+      text-align: center
+      .singer
+        height: 16px
+        overflow: hidden
+        text-align: center
+        .singer-name
+          display: inline-block
+          position: relative
+          &:before, &:after
+            content: ""
+            width: 15px
+            position: absolute
+            top: 50%
+            border-top: 1px solid #FFFFFF
+          &:before
+            left: -20px
+          &:after
+            right: -20px
+    .singer-middle
+      position: absolute
+      top: 100px
+      bottom: 120px
+      width: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+      .singer-img
+        width: 260px
+        height: @width
+        border-radius: 50%
+        border: 10px solid rgba(221, 221, 221, 0.3)
+        img
+          width: 100%
+          height: @width
+          border-radius: 50%
+    .singer-bottom
+      position: absolute
+      bottom: 0
+      width: 100%
+      height: 120px
+      .controller-wrapper
+        padding: 0 30px
+        .progress-wrapper
+          display: flex
+          align-items: center
+          height: 30px
+          line-height: 30px
+          font-size: 12px
+          font-weight: 400
+          .current-time, .total-time
+            width: 40px
+          .current-time
+            text-align: left
+          .total-time
+            text-align: right
+          .play-progress
+            flex: 1
+        .play-wrapper
+          display: flex
+          margin-top: 10px
+          color: #FFD700
+          font-size: 36px
+          text-align: center
+          align-items: center
+          div
+            flex: 1
+          .play-button
+            font-size: 45px
+          .play-model-button
+            text-align: left
+            text-shadow: 0 0 3px #FFD700
+          .play-list-button
+            text-align: right
+    </style>

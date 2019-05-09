@@ -1,50 +1,44 @@
 <template>
   <div class="music-recommend">
-        <!-- <h1>推荐</h1> -->
-        <scroll direction="vertical">
-            <div class="recommend-wrapper">
-                <div class="slider-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"
-                        v-for="slider in sliderList"
-                        :key="slider.id"
-                        >
-                        <a class="slider-nav" @click="toLink(slider.linkUrl)">
-                            <img :src="slider.picUrl" width="100%" height="100%" alt="推荐"/>
-                        </a>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
-                <div class="album-container" :style="{display:this.loading===true?'none':''}">
-                    <h1 class="title skin-recommend-title">最新专辑</h1>
-                    <div class="album-list">
-                        <div class="album-wrapper skin-album-wrapper" v-for="album in newAlbums" :key="album.id" @click="toAlbumDetail(album.mId)">
-                            <div class="left">
-                                <img v-lazy="{src:album.img,loading:loadingImg}" width="100%" height="100%" alt="album.name">
-                            </div>
-                            <div class="right">
-                                <div class="album-name">
-                                    {{album.name}}
-                                </div>
-                                <div class="singer-name">
-                                    {{album.singer}}
-                                </div>
-                                <div class="public-time">
-                                    {{album.publicTime}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <scroll direction="vertical">
+      <div class="recommend-wrapper">
+        <div class="slider-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="slider in sliderList" :key="slider.id">
+              <a class="slider-nav" @click="toLink(slider.linkUrl)">
+                <img :src="slider.picUrl" width="100%" height="100%" alt="推荐"/>
+              </a>
             </div>
-        </scroll>
-        <loading title="正在加载中..." :show="loading"/>
-        <transition name="translate">
-            <router-view/>
-        </transition>
-
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <div class="album-container" :style="{display: this.loading === true ? 'none' : ''}">
+          <h1 class="title skin-recommend-title">最新专辑</h1>
+          <div class="album-list">
+            <div class="album-wrapper skin-album-wrapper" v-for="album in newAlbums" :key="album.id" @click="toAlbumDetail(album.mId)">
+              <div class="left">
+                  <img v-lazy="{src: album.img, loading: loadingImg}" width="100%" height="100%" :alt="album.name" />
+              </div>
+              <div class="right">
+                <div class="album-name">
+                  {{album.name}}
+                </div>
+                <div class="singer-name">
+                  {{album.singer}}
+                </div>
+                <div class="public-time">
+                  {{album.publicTime}}
+                </div>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </scroll>
+    <loading title="正在加载..." :show="loading"/>
+    <transition name="translate">
+      <router-view />
+    </transition>
   </div>
 </template>
 <script>
@@ -71,8 +65,9 @@ export default {
             window.location.href=linkUrl;
         },
         toAlbumDetail(mId){
+            console.log(mId);
             //跳转到专辑详情,这里使用编程式路由跳转
-            this.$router.push(`${this.$router.path+'/'+mId}`);
+            this.$router.push(`${this.$route.path+'/'+mId}`);
         }
     },
 
