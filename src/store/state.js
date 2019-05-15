@@ -1,7 +1,6 @@
 import localStorage from "../util/storage"
 
 //状态数据
-
 const initialState = {
     skin:localStorage.getSkin(),//主题
     showStatus:false,
